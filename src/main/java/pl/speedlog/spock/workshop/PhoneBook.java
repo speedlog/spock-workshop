@@ -1,5 +1,7 @@
 package pl.speedlog.spock.workshop;
 
+import org.springframework.util.StringUtils;
+
 import java.util.HashMap;
 
 /**
@@ -14,6 +16,12 @@ public class PhoneBook {
     private HashMap<String, String> book = new HashMap<>();
 
     public void addPhone(String phone, String name) {
+        if (StringUtils.isEmpty(phone)) {
+            throw new IllegalArgumentException("Phone can't be empty!");
+        }
+        if (StringUtils.isEmpty(name)) {
+            throw new IllegalArgumentException("Name can't be empty!");
+        }
         book.put(phone, name);
     }
 

@@ -1,5 +1,6 @@
 package pl.speedlog.spock.workshop;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,7 +43,7 @@ public class PersonService {
         }
 
         boolean smsWasSend = false;
-        if (person.getPhone() != null) {
+        if (person.getPhone() != null && (changedName || changedSurname)) {
             String message = getMessage(changedName, changedSurname);
             smsWasSend = informationService.sendInformation(person.getPhone(), message);
         }
@@ -76,6 +77,7 @@ interface PersonDAO {
 
 @Getter
 @Setter
+@AllArgsConstructor
 class Person {
     Long id;
     String name;

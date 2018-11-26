@@ -14,8 +14,8 @@ public class MessageService {
     }
 
     public void sendSms(List<String> phoneNumber) {
-        if (phoneNumber.isEmpty() || phoneNumber.size() >= 5) {
-            throw new IllegalArgumentException("List of phone numbers can't be empty or greather than 5");
+        if (phoneNumber.isEmpty() || phoneNumber.size() > 10) {
+            throw new IllegalArgumentException("List of phone numbers can't be empty or greather than 10");
         }
 
         phoneNumber.stream().filter(number -> !number.startsWith("5")).forEach(smsService::sendSms);
