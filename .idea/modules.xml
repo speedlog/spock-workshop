@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spock-example2.iml" filepath="$PROJECT_DIR$/spock-example2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spock-workshop.iml" filepath="$PROJECT_DIR$/spock-workshop.iml" />
     </modules>
   </component>
 </project>
