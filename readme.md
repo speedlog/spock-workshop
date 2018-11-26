@@ -1,5 +1,20 @@
 # Repozytorium pomocnicze dla prezentacji na temat Spocka
 
+Wymagania:
+* java >= 8
+* zalecane korzystanie z IDE IntelliJ
+
+Przed warsztatami:
+* sklonować repozytorium i uruchomić
+```
+git checkout before-workshop
+./mvnw clean install
+```
+Część z przykładów zakończy się błędem - jest to celowe działanie na potrzeby prezentacji.
+* zalecane zainstalowanie pluginów do IntelliJ
+  * https://plugins.jetbrains.com/plugin/7442-gmavenplus-intellij-plugin
+  * https://plugins.jetbrains.com/plugin/7114-spock-framework-enhancements
+
 Dostępne są dwa branche:
 * before-workshop - kod zawierający przykłady i kod, do którego będą pisane testy podczas warsztatów
 * after-workshop  - kod dopisanymi testami na warsztatach
