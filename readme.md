@@ -6,10 +6,10 @@ Wymagania:
 
 Przed warsztatami:
 * sklonować repozytorium i uruchomić
-`
+```
 git checkout before-workshop
 ./mvnw clean install
-`
+```
 Część z przykładów zakończy się błędem - jest to celowe działanie na potrzeby prezentacji.
 * zalecane zainstalowanie pluginów do IntelliJ
   * https://plugins.jetbrains.com/plugin/7442-gmavenplus-intellij-plugin
