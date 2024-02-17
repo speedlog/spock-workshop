@@ -10,23 +10,23 @@ import java.util.HashMap;
 public class PhoneBook {
 
     /**
-     * Key is phone number.
+     * Key is a phone number.
      * Value is a name.
      */
     private HashMap<String, String> book = new HashMap<>();
 
-    public void addPhone(String phone, String name) {
-        if (StringUtils.isEmpty(phone)) {
+    public void addPhone(String phoneNumber, String name) {
+        if (StringUtils.isEmpty(phoneNumber)) {
             throw new IllegalArgumentException("Phone can't be empty!");
         }
         if (StringUtils.isEmpty(name)) {
             throw new IllegalArgumentException("Name can't be empty!");
         }
-        book.put(phone, name);
+        book.put(phoneNumber, name);
     }
 
-    public String getNameByPhone(String phone) {
-        return book.get(phone);
+    public String getNameByPhone(String phoneNumber) {
+        return book.get(phoneNumber);
     }
 
 }
