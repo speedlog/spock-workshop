@@ -1,9 +1,9 @@
-package pl.speedlog.spock.example
+package pl.speedlog.spock.example.groovy
 
 import spock.lang.Specification
 
 /**
- * Przykład dynamicznego kodu Groovy.
+ * Przykład dynamicznego kodu Groovy (konstruktor oraz gettery/settery).
  *
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
  */
