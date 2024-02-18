@@ -1,5 +1,7 @@
-package pl.speedlog.spock.example;
+package pl.speedlog.spock.example
 
+import org.spockframework.mock.TooManyInvocationsError
+import spock.lang.FailsWith;
 import spock.lang.Specification;
 
 /**
@@ -30,6 +32,7 @@ class MockInvocationMatchingExampleSpec extends Specification {
             2 * smsService.sendSms()
     }
 
+    @FailsWith(TooManyInvocationsError)
     def "Should send sms, email and bulk sms - fail, because of matching"() {
         when:
             messageService.sendSmsAndBulkSms()

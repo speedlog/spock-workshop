@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.mock.TooFewInvocationsError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -24,6 +26,7 @@ class MockInvocationWithSetupExampleSpec extends Specification {
             //1 * emailService.sendMail() - z metody setup()
     }
 
+    @FailsWith(TooFewInvocationsError)
     def "Should send email and check mail - fail"() {
         when:
             messageService.sendEmailAndCheckMail()

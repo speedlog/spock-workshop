@@ -1,5 +1,8 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.mock.TooFewInvocationsError
+import org.spockframework.mock.TooManyInvocationsError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -13,21 +16,25 @@ class MockInvocationErrorExampleSpec extends Specification {
     def messageService = new MessageService(emailService: emailService)
 
 
-    def "Too few calls"() {
+    @FailsWith(TooFewInvocationsError)
+    def "Too few calls - should fail"() {
         when:
             messageService.sendMail()
         then:
             1 * emailService.checkMail()
     }
 
-    def "Too many calls"() {
+    @FailsWith(TooManyInvocationsError)
+    def "Too many calls - should fail"() {
         when:
-            messageService.sendAndCheckMail()
+            messageService.sendMail()
+            messageService.sendMail()
         then:
-            2 * emailService.sendMail()
+            1 * emailService.sendMail()
     }
 
-    def "Wrong parameters"() {
+    @FailsWith(TooFewInvocationsError)
+    def "Wrong parameters - should fail"() {
         when:
             messageService.sendMailWithMessage("abc")
         then:

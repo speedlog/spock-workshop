@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.runtime.ConditionNotSatisfiedError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -12,7 +14,8 @@ class StubAndMockExampleSpec extends Specification {
     def carDAO = Mock(CarDAO)
     def carService = new CarService(carDAO)
 
-    def "Should persist and return car"() {
+    @FailsWith(ConditionNotSatisfiedError)
+    def "Should persist and return car - should fail"() {
         given:
             Car car = new Car(id: 1, brand: "BMW")
             carDAO.persist(car) >> car

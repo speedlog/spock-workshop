@@ -1,5 +1,6 @@
 package pl.speedlog.spock.example
 
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -12,6 +13,7 @@ class MockInteractionBlockExampleSpec extends Specification {
     def emailService = Mock(EmailService)
     def messageService = new MessageService(emailService: emailService)
 
+    @FailsWith(MissingPropertyException)
     def "Should send message with long text - it will fail"() {
         // Przeniesiona została interakcja, ale bez deklaracji zmiennej "longText"
         // 1 * emailService.sendMail(longText)

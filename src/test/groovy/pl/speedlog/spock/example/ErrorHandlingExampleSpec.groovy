@@ -1,5 +1,9 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.mock.TooFewInvocationsError
+import org.spockframework.runtime.ConditionNotSatisfiedError
+import org.spockframework.runtime.WrongExceptionThrownError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -9,6 +13,7 @@ import spock.lang.Specification
  */
 class ErrorHandlingExampleSpec extends Specification {
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should compare numbers"() {
         given:
             int number1 = 1
@@ -19,6 +24,7 @@ class ErrorHandlingExampleSpec extends Specification {
             result == 4
     }
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should compare text"() {
         when:
             String text = "Some extra TEXT!"
@@ -26,6 +32,7 @@ class ErrorHandlingExampleSpec extends Specification {
             text == "Some Extra TEXT"
     }
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should compare modified text"() {
         when:
             String text = "Some extra TEXT!"
@@ -33,6 +40,7 @@ class ErrorHandlingExampleSpec extends Specification {
             text.toUpperCase().substring(0, 4) == "Some Extra TEXT"
     }
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should compare lists"() {
         when:
             List<Integer> list = Arrays.asList(1, 2, 3)
@@ -40,6 +48,7 @@ class ErrorHandlingExampleSpec extends Specification {
             list == Arrays.asList(1, 5, 3, 10)
     }
 
+    @FailsWith(NullPointerException)
     def "Should compare nested object"() {
         when:
             Container container1 = new Container("text1")
@@ -49,6 +58,7 @@ class ErrorHandlingExampleSpec extends Specification {
             container3.getContainer().getContainer().getContainer().text == "text1"
     }
 
+    @FailsWith(TooFewInvocationsError)
     def "Should check interaction"() {
         given:
             def threadMock = Mock(Runnable)
@@ -58,6 +68,7 @@ class ErrorHandlingExampleSpec extends Specification {
             2 * threadMock.run()
     }
 
+    @FailsWith(WrongExceptionThrownError)
     def "Should check exception"() {
         given:
             String something = null

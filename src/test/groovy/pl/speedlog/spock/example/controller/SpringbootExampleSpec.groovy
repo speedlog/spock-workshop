@@ -10,8 +10,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import pl.speedlog.spock.example.controller.dto.CarInfo
 import pl.speedlog.spock.example.domain.service.CarService
 import spock.lang.Specification
+import groovy.json.JsonOutput
 
-import static groovy.json.JsonOutput.toJson
 import static org.springframework.http.MediaType.APPLICATION_JSON
 
 /**
@@ -55,7 +55,7 @@ class SpringbootExampleSpec extends Specification {
                     model :  model
             ]
         when:
-            def response = mvc.perform(MockMvcRequestBuilders.post('/car/add').contentType(APPLICATION_JSON).content(toJson(request))).andReturn().response
+            def response = mvc.perform(MockMvcRequestBuilders.post('/car/add').contentType(APPLICATION_JSON).content(JsonOutput.toJson(request))).andReturn().response
         then:
             response.status == HttpStatus.UNPROCESSABLE_ENTITY.value()
         and:
