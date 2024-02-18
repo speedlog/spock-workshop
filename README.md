@@ -11,12 +11,11 @@ Przed warsztatami:
 git checkout before-workshop
 ./mvnw install
 ```
-Część z przykładów zakończy się błędem - jest to celowe działanie na potrzeby prezentacji.
 
 Dostępne są trzy branche:
 * `master` - główne informacje o projekcie
-* `before-workshop` - kod zawierający przykłady i kod, do którego będą pisane testy podczas warsztatów
-* `after-workshop` - kod z dopisanymi testami na warsztatach
+* `before-workshop` - kod zawierający przykłady i kod, do którego będą pisane testy podczas warsztatów. Na tym branchu build może zakończyć się błędem, aby omówić przykład na warsztatach.
+* `after-workshop` - kod z dopisanymi testami na warsztatach. Na tym branchu build powinien zakończyć się sukcesem.
 
 W pakietach `example` są przykłady do omówienia podczas prezentacji.
 W pakietach `workshop` są funkcjonalności, do których będą pisane testy na warsztatach
