@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import org.opentest4j.MultipleFailuresError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -9,7 +11,8 @@ import spock.lang.Specification
  */
 class VerifyAllExampleSpec extends Specification {
 
-    def "Should check Person information"() {
+    @FailsWith(MultipleFailuresError)
+    def "Should check Person information - should fail"() {
         given:
             def person = simulateGettingPersonFromDatabase()
         expect:
@@ -18,7 +21,6 @@ class VerifyAllExampleSpec extends Specification {
                 surname == "Rammbo"
                 phone == "555-556-555"
                 email == "john@rambo.com"
-
             }
     }
 

@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.runtime.ConditionNotSatisfiedError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -21,6 +23,7 @@ class StubOverrideExampleSpec extends Specification {
             result == "Honda"
     }
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should return BMW from override - it doesn't works"() {
         given:
             carDAO.findById(1) >> new Car(id: 1, brand: "BMW")

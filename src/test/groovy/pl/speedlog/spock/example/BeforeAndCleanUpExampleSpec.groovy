@@ -1,11 +1,10 @@
 package pl.speedlog.spock.example
 
-import org.junit.BeforeClass
+
 import spock.lang.Shared
 import spock.lang.Specification
-
 /**
- * Przykład użycia adnotacji @BeforeClass.
+ * Przykład konfiguracji dla wszystkich metod testowych.
  *
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
  */
@@ -14,8 +13,7 @@ class BeforeAndCleanUpExampleSpec extends Specification {
     @Shared
     String csvText
 
-    @BeforeClass
-    def beforeClass() {
+    def setupSpec() {
         csvText = this.getClass().getResource( '/ULIC_Urzedowy_2018-11-10.csv' ).text
     }
 

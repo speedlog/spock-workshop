@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.mock.TooManyInvocationsError
+import spock.lang.FailsWith
 import spock.lang.Specification
 
 /**
@@ -9,6 +11,7 @@ import spock.lang.Specification
  */
 class StrictMockExampleSpec extends Specification {
 
+    @FailsWith(TooManyInvocationsError)
     def "Should send email - fail, because of strict mode"() {
         given:
             def emailService = Mock(EmailService)
