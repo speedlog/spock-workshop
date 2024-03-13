@@ -1,5 +1,7 @@
 package pl.speedlog.spock.example
 
+import com.xlson.groovycsv.CsvParser
+import spock.lang.Shared
 import spock.lang.Specification
 
 /**
@@ -9,7 +11,7 @@ import spock.lang.Specification
  */
 class WhereExampleSpec extends Specification {
 
-    def "Should validate by age and sex version 1"() {
+    def "Should validate by age and sex using data table"() {
         given:
             def validator = new AgeAndSexValidator()
         when:
@@ -29,7 +31,7 @@ class WhereExampleSpec extends Specification {
             99  | "M" || true
     }
 
-    def "Should validate by age and sex version 2"() {
+    def "Should validate by age and sex using data pipeline"() {
         given:
             def validator = new AgeAndSexValidator()
         when:
@@ -37,11 +39,27 @@ class WhereExampleSpec extends Specification {
         then:
             result == expectedResult
         where:
-            //
-            // alternatywny zapis danych
             age << [15, 16, 99, 17, 18, 99]
             sex << ["K", "K", "K", "M", "M", "M"]
             expectedResult << [false, true, true, false, true, true]
+    }
+
+    @Shared csvData = new CsvParser().parse([skipLines: 1] as Map, """
+            name,sex,age
+            Anna,K,16
+            John,M,18
+            Mark,M,99
+            Alex,K,99""")
+
+    def "Should validate by age and sex using Multi-Variable Data Pipes"() {
+        given:
+            def validator = new AgeAndSexValidator()
+        when:
+            def result = validator.validate(age as int, sex as String)
+        then:
+            result == true
+        where:
+            [_, sex, age] << csvData
     }
 
     class AgeAndSexValidator {

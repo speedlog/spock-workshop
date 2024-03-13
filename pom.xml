@@ -75,6 +75,12 @@
             <version>${groovy.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.xlson.groovycsv</groupId>
+            <artifactId>groovycsv</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Mandatory dependencies for using Spock -->
         <dependency>
