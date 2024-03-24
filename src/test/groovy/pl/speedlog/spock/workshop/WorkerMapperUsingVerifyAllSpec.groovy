@@ -5,7 +5,7 @@ import spock.lang.Specification
 /**
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
  */
-class WorkerMapperSpec extends Specification {
+class WorkerMapperUsingVerifyAllSpec extends Specification {
 
     def workerMapper = new WorkerMapper()
 
@@ -27,22 +27,6 @@ class WorkerMapperSpec extends Specification {
             )
     )
 
-    def "Should map Developer to WorkerDTO (using with)"() {
-        when:
-            def result = workerMapper.developerToWorkerDTO(developer)
-        then:
-            result.additionalInfo == "Languages: Java, Groovy, Python"
-            checkPersonalInfoUsingWith(result, developer.getPersonalInfo())
-    }
-
-    def "Should map Admin to WorkerDTO (using with)"() {
-        when:
-            def result = workerMapper.adminToWorkerDTO(admin)
-        then:
-            result.additionalInfo == "Systems: MacOs, Windows, Linux"
-            checkPersonalInfoUsingWith(result, admin.getPersonalInfo())
-    }
-
     def "Should map Developer to WorkerDTO (using verifyAll)"() {
         when:
             def result = workerMapper.developerToWorkerDTO(developer)
@@ -57,14 +41,6 @@ class WorkerMapperSpec extends Specification {
         then:
             result.additionalInfo == "Systems: MacOs, Windows, Linux"
             checkPersonalInfoUsingVerifyAll(result, admin.getPersonalInfo())
-    }
-
-    void checkPersonalInfoUsingWith(def result, PersonalInfo expectedInfo) {
-        with(result) {
-            result.name == expectedInfo.name
-            result.surname == expectedInfo.surname
-            result.phone == expectedInfo.phone
-        }
     }
 
     void checkPersonalInfoUsingVerifyAll(def result, PersonalInfo expectedInfo) {
