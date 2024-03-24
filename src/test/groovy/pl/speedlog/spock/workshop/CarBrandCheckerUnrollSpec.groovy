@@ -5,9 +5,9 @@ import spock.lang.Specification
 /**
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
  */
-class CarBrandCheckerSpec extends Specification {
+class CarBrandCheckerUnrollSpec extends Specification {
 
-    def "Check if brand with specific production year is oldtimer"() {
+    def "For brand #brand and production year #productionYear car is #expectedResult"() {
         given:
             def carBrandChecker = new CarBrandChecker()
         when:
