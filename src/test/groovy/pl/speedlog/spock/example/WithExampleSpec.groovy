@@ -1,6 +1,10 @@
 package pl.speedlog.spock.example
 
+import org.spockframework.runtime.ConditionNotSatisfiedError
+import spock.lang.FailsWith
 import spock.lang.Specification
+
+import java.time.LocalDate
 
 /**
  * Przykład użycia sekcji "with".
@@ -9,6 +13,7 @@ import spock.lang.Specification
  */
 class WithExampleSpec extends Specification {
 
+    @FailsWith(ConditionNotSatisfiedError)
     def "Should check Person information"() {
         given:
             def person = simulateGettingPersonFromDatabase()
@@ -24,7 +29,7 @@ class WithExampleSpec extends Specification {
     void checkAddress(Address address) {
         with(address) {
             street == "Green Tree 123"
-            localNumber == "33B"
+            localNumber == "33B-BLABLA" // <-------------------------- WRONG VALUE
             city == "Los Angeles"
         }
     }
@@ -32,9 +37,9 @@ class WithExampleSpec extends Specification {
     void checkDocument(Document document) {
         with(document) {
             series == "AWB123"
-            expirationDate.year == new Date().year
-            expirationDate.month == new Date().month
-            expirationDate.day == new Date().day
+            expirationDate.year == 1410 // <-------------------------- WRONG VALUE
+            expirationDate.month == LocalDate.now().month
+            expirationDate.dayOfMonth == LocalDate.now().dayOfMonth
         }
     }
 
@@ -49,7 +54,7 @@ class WithExampleSpec extends Specification {
                 ),
                 document: new Document(
                         series: "AWB123",
-                        expirationDate: new Date()
+                        expirationDate: LocalDate.now()
                 )
         )
     }
@@ -69,6 +74,6 @@ class WithExampleSpec extends Specification {
 
     class Document {
         String series
-        Date expirationDate
+        LocalDate expirationDate
     }
 }
