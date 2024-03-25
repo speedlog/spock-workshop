@@ -16,6 +16,10 @@ class StubOverrideExampleSpec extends Specification {
     }
     def carService = new CarService(carDAO)
 
+    def setup() {
+        carDAO.findById(1) >> new Car(id: 1, brand: "VOLKSWAGEN")
+    }
+
     def "Should return Honda from stub declaration"() {
         when:
             def result = carService.getCarBrand(1)

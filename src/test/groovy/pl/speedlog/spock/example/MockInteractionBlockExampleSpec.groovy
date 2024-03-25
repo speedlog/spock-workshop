@@ -20,7 +20,7 @@ class MockInteractionBlockExampleSpec extends Specification {
         when:
             messageService.sendLongMail()
         then:
-            def longText = "It's very long text, so it will be good to assign it to variable"
+            def longText = "Looooong text..."
             1 * emailService.sendMail(longText)
     }
 
@@ -32,7 +32,7 @@ class MockInteractionBlockExampleSpec extends Specification {
             messageService.sendLongMail()
         then:
             interaction {
-                def longText = "It's very long text, so it will be good to assign it to variable"
+                def longText = "Looooong text..."
                 1 * emailService.sendMail(longText)
             }
     }
@@ -42,7 +42,7 @@ class MockInteractionBlockExampleSpec extends Specification {
         EmailService emailService
 
         void sendLongMail() {
-            def longText = "It's very long text, so it will be good to assign it to variable"
+            def longText = "Looooong text..."
             emailService.sendMail(longText)
         }
 

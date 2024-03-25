@@ -53,11 +53,6 @@ class MockInvocationErrorExampleSpec extends Specification {
             emailService.sendMail(msg)
         }
 
-        void sendAndCheckMail() {
-            emailService.sendMail()
-            emailService.checkMail()
-        }
-
     }
 
     interface EmailService {

@@ -1,8 +1,8 @@
 package pl.speedlog.spock.example
 
 import org.spockframework.mock.TooManyInvocationsError
-import spock.lang.FailsWith;
-import spock.lang.Specification;
+import spock.lang.FailsWith
+import spock.lang.Specification
 
 /**
  * Przykład dopasowania interakcji.
@@ -18,18 +18,24 @@ class MockInvocationMatchingExampleSpec extends Specification {
             smsService: smsService
     )
 
-    def "Should send sms, email and sms"() {
+    def "Should send sms, email and sms - the same order as in code"() {
+        when:
+            messageService.sendTwoSmsAndOneMail()
+        then:
+            1 * smsService.sendSms() // dopasowanie do A
+            1 * emailService.sendMail() // dopasowanie do B
+            1 * smsService.sendSms() // dopasowanie do C
+    }
+
+    def "Should send sms, email and sms - different order than in code"() {
         when:
             messageService.sendTwoSmsAndOneMail()
         then:
             // kolejność deklaracji nie musi odpowiadać kolejności wywołań
             // przykład jak sprawdzić kolejność wywołań:
             // patrz: MockInvocationOrderExampleSpec
-            // B
-            1 * emailService.sendMail()
-            // A
-            // C
-            2 * smsService.sendSms()
+            1 * emailService.sendMail() // dopasowanie do B
+            2 * smsService.sendSms() // dopasowanie do A i C
     }
 
     @FailsWith(TooManyInvocationsError)
@@ -37,10 +43,8 @@ class MockInvocationMatchingExampleSpec extends Specification {
         when:
             messageService.sendSmsAndBulkSms()
         then:
-            // A
-            // B - liczba wywołań się nie zgadza
-            1 * smsService._
-            1 * smsService.sendSms()
+            1 * smsService._             // dopasowanie do D
+            1 * smsService.sendSms()     // dopasowanie do E - liczba wywołań się nie zgadza
     }
 
     class MessageService {
@@ -55,8 +59,8 @@ class MockInvocationMatchingExampleSpec extends Specification {
         }
 
         void sendSmsAndBulkSms() {
-            smsService.sendSms() // A
-            smsService.sendBulkSms() // B
+            smsService.sendSms() // D
+            smsService.sendBulkSms() // E
         }
 
     }

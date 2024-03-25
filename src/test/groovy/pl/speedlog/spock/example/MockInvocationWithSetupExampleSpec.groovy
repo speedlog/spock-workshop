@@ -33,7 +33,7 @@ class MockInvocationWithSetupExampleSpec extends Specification {
         then:
             1 * emailService.checkMail()
             1 * emailService.sendMail()
-            //1 * emailService.sendMail() - z metody setup(), powód błędu
+            //1 * emailService.sendMail() - z metody setup() spowoduje błąd
     }
 
     class MessageService {
