@@ -20,6 +20,7 @@ class StubDefaultReturnExampleSpec extends Specification {
             stub.someList() == []
             stub.findCar() instanceof ISpockMockObject //dummy object
             stub.findCar() instanceof Car              //dummy object
+            stub.findCar().findByName() == ""
     }
 
     interface SomeClass {

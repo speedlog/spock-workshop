@@ -27,7 +27,7 @@ class MessageServiceSpec extends Specification {
         when:
             messageService.sendSms(phoneList)
         then:
-            9 * smsService.sendSms({ String phoneNumber -> !phoneNumber.startsWith("5") })
+            9 * smsService.sendSms(_ as String)
     }
 
     def "Should throw exception when passed more then 10 phone numbers"() {

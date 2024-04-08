@@ -5,7 +5,7 @@ import spock.lang.Specification
 /**
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
  */
-class WorkerMappeUsingAssertSpec extends Specification {
+class WorkerMapperUsingAssertSpec extends Specification {
 
     def workerMapper = new WorkerMapper()
 

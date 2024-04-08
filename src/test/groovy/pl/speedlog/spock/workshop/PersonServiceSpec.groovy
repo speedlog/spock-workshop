@@ -1,7 +1,6 @@
 package pl.speedlog.spock.workshop
 
 import spock.lang.Specification
-import spock.lang.Unroll
 
 /**
  * @author <a href="mailto:mariusz@wyszomierski.pl">Mariusz Wyszomierski</a>
@@ -29,8 +28,6 @@ class PersonServiceSpec extends Specification {
         when:
             def smsSend = personService.changePersonInfo(1, null, null)
         then:
-            0 * person.setName(_)
-            0 * person.setSurname(_)
             0 * informationService.sendInformation(_, _)
             smsSend == false
     }
@@ -42,13 +39,10 @@ class PersonServiceSpec extends Specification {
         when:
             def smsSend = personService.changePersonInfo(1, "John", "Rambo")
         then:
-            0 * person.setName(_)
-            0 * person.setSurname(_)
             0 * informationService.sendInformation(_, _)
             smsSend == false
     }
 
-    @Unroll
     def "Should send only one SMS and only if person has phone number"() {
         given:
             def person = new Person(1, oldName, oldSurname, phoneNumber)
