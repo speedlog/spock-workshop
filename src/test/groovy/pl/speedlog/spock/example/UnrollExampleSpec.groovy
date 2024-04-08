@@ -1,7 +1,6 @@
 package pl.speedlog.spock.example
 
 import spock.lang.Specification
-import spock.lang.Unroll
 
 /**
  * Przykład użycia adnotacji @Unroll.
@@ -10,7 +9,6 @@ import spock.lang.Unroll
  */
 class UnrollExampleSpec extends Specification {
 
-    @Unroll
     def "PESEL #pesel should be #validInfo"() {
         when:
             def result = PeselValidator.isValidPESEL(pesel)

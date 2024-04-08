@@ -18,8 +18,8 @@ class VerifyAllExampleSpec extends Specification {
         expect:
             verifyAll(person) {
                 name == "John"
-                surname == "Rammbo"
-                phone == "555-556-555"
+                surname == "Rammbo" // <----------------- literówka
+                phone == "555-556-555" // <-------------- zamiast 5 jest 6
                 email == "john@rambo.com"
             }
     }

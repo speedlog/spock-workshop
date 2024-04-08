@@ -13,8 +13,15 @@ class BeforeAndCleanUpExampleSpec extends Specification {
     @Shared
     String csvText
 
+    def someVariable = ""
+
     def setupSpec() {
         csvText = this.getClass().getResource( '/ULIC_Urzedowy_2018-11-10.csv' ).text
+        //someVariable = "setup this once before running specification"
+    }
+
+    def cleanupSpec() {
+        csvText = null
     }
 
     def "Should check line number"() {
