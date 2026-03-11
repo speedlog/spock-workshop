@@ -1,8 +1,8 @@
 package pl.speedlog.spock.example
 
-
 import spock.lang.Shared
 import spock.lang.Specification
+
 /**
  * Przykład konfiguracji dla wszystkich metod testowych.
  *
@@ -16,7 +16,7 @@ class BeforeAndCleanUpExampleSpec extends Specification {
     def someVariable = ""
 
     def setupSpec() {
-        csvText = this.getClass().getResource( '/ULIC_Urzedowy_2018-11-10.csv' ).text
+        csvText = this.getClass().getResource( '/ULIC_Urzedowy_2018-11-10.csv' ).getText("UTF-8")
         //someVariable = "setup this once before running specification"
     }
 
