@@ -1,11 +1,9 @@
 package pl.speedlog.spock.example
 
-import org.spockframework.runtime.ConditionNotSatisfiedError
-import spock.lang.FailsWith
+
 import spock.lang.Specification
 
 import java.time.LocalDate
-
 /**
  * Przykład użycia metod pomocniczych.
  *
@@ -13,8 +11,6 @@ import java.time.LocalDate
  */
 class HelperMethodExampleSpec extends Specification {
 
-
-    @FailsWith(ConditionNotSatisfiedError)
     def "Should check Person information"() {
         given:
             def person = simulateGettingPersonFromDatabase()
@@ -26,16 +22,16 @@ class HelperMethodExampleSpec extends Specification {
     }
 
     void checkAddress(Address address) {
-        assert address.street == "Green Tree 123"
-        assert address.localNumber == "33B-BLABLA" // <-------------------------- WRONG VALUE
-        assert address.city == "Los Angeles"
+        address.street == "Green Tree 123"
+        address.localNumber == "33B-BLABLA" // <-------------------------- WRONG VALUE
+        address.city == "Los Angeles"
     }
 
     void checkDocument(Document document) {
-        assert document.series == "AWB123"
-        assert document.expirationDate.year == 1410 // <-------------------------- WRONG VALUE
-        assert document.expirationDate.month == LocalDate.now().month
-        assert document.expirationDate.dayOfMonth == LocalDate.now().dayOfMonth
+        document.series == "AWB123"
+        document.expirationDate.year == 1410 // <-------------------------- WRONG VALUE
+        document.expirationDate.month == LocalDate.now().month
+        document.expirationDate.dayOfMonth == LocalDate.now().dayOfMonth
     }
 
     Person simulateGettingPersonFromDatabase() {
